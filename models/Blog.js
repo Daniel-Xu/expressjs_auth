@@ -1,12 +1,10 @@
 var mongoose = require('mongoose');
+var User = require('../models/User');
+var Comment = require('../models/comment');
+var Tag = require('../models/tag');
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
-var blogSchema = new mongoose.Schema({
-  _id: {
-    type: Number,
-    index: true,
-    required: true,
-    unique: true
-  },
+var Blog = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -20,13 +18,13 @@ var blogSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  lastUpdateedDate: {
+  lastUpdatedDate: {
     type: Number,
     required: true
   },
   // N.B.
   author: {
-    type: User,
+    type: ObjectId, ref: 'User',
     required: true,
     meta: {
       _id: {
@@ -43,7 +41,7 @@ var blogSchema = new mongoose.Schema({
   },
   // N.B.
   tags: {
-    type: [Tag],
+    type: ObjectId, ref: 'Tag',
     meta: {
       _id: {
         type: Number,
@@ -68,7 +66,7 @@ var blogSchema = new mongoose.Schema({
 
   // N.B.
   comments: {
-    type: [Comment],
+    type: ObjectId, ref: 'Comment',
     meta: {
       _id: {
         type: Number,
@@ -89,7 +87,7 @@ var blogSchema = new mongoose.Schema({
         required: true
       },
       author: {
-        type: User,
+        type: ObjectId, ref: 'User',
         required: true,
         meta: {
           _id: {
@@ -134,4 +132,4 @@ var blogSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Blog', blogSchema);
+module.exports = mongoose.model('Blog', Blog);
