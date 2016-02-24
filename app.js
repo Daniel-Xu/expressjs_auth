@@ -79,10 +79,10 @@ app.use(function(req, res, next) {
 
 // token error
 app.use(function (err, req, res, next) {
-  console.log(12131221312313)
   if (err.name === 'UnauthorizedError') {
-    res.status(err.code).send(err);
+    return res.status(err.code).send(err);
   }
+  res.status(err.status || 500).send(err);
 });
 
 // production error handler

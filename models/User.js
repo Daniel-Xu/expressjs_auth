@@ -9,5 +9,5 @@ var User = new mongoose.Schema({
 });
 
 //option can setup email, will try this later
-userSchema.plugin(passportLocalMongoose, {});
+User.plugin(passportLocalMongoose, {});
 module.exports = mongoose.model('User', User);

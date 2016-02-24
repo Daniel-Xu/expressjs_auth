@@ -31,7 +31,8 @@ function signToken(username, role) {
  * @param {} res
  * @param {} next
  */
-function isAuthenticated(req, res, next) {
+function isAuthenticated() {
+  // compose return middleware function
    return compose()
     // Validate jwt
     .use(function(req, res, next) {
